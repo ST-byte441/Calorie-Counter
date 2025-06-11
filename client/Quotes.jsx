@@ -24,8 +24,8 @@ function Quotes() {
 
     return (
         <div className="quotes">
-            {quote ? (
-                <>
+            {quote ? ( // line 28 and 31 needed for conditional rendering
+                <> 
                     <blockquote>{quote.text}</blockquote>
                     <cite>- {quote.author}</cite>
                 </>

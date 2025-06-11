@@ -2,34 +2,36 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Quotes from "./Quotes";
+import Header from "./ResHeader";
 
+
+//* Homepage with Quotes!
 function Home() {
     const navigate = useNavigate();
     return(
         <div className="home">
-            {/* <h1>Solo Project</h1> */}
             <Quotes></Quotes>
-            <button onClick={() => navigate("/about")}>Go to About Page</button>
+            <button onClick={() => navigate("/MyCalories")}>Go to Your Calories</button>
         </div>
     );
 }
 
-function About() {
+//* Secondary page with Calorie tracker
+function MyCalories() {
     return (
         <div>
-            <h1>About Page</h1>
-            <button onClick={() => window.history.back()}>Go Back</button>
+            <Header></Header>
         </div>
     );
 }
 
-
+//* Primary Export Page
 export default () => {
     return (
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/about" element={<About />} />
+                <Route path="/MyCalories" element={<MyCalories />} />
             </Routes>
         </BrowserRouter>
     )
