@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import Quotes from "./Quotes";
 
 function Home() {
     const navigate = useNavigate();
     return(
         <div className="home">
-            <h1>Solo Project</h1>
+            {/* <h1>Solo Project</h1> */}
+            <Quotes></Quotes>
             <button onClick={() => navigate("/about")}>Go to About Page</button>
         </div>
     );
