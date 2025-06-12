@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Quotes from "./Quotes";
 import Header from "./ResHeader";
 import ItemBox from "./ItemBox"
+import CombinedBox from "./ListBox";
 
 
 //* Homepage with Quotes!
@@ -22,6 +23,7 @@ function MyCalories() {
     return (
         <div className="myCaloriesPage">
             <Header></Header>
+            <CombinedBox></CombinedBox>
             <ItemBox></ItemBox>
         </div>
     );

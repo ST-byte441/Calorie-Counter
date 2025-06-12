@@ -11,7 +11,7 @@ function ItemBox () {
     return (
         <div className="item-box">
             <div className="arrow-container" onClick={toggleItems}>
-                <img src='./assets/upArrow.png' alt="Toggle Arrow" className="arrow-img"></img>
+                {/* <img src='./assets/upArrow.png' alt="Toggle Arrow" className="arrow-img"></img> */}
                 <span className={`arrow ${showNewItems ? 'up' : 'down'}`}></span>
             </div>
 
