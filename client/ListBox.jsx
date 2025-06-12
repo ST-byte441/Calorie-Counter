@@ -21,16 +21,18 @@ function BoxPrimary ({ children }) {
     )
 }
 
-function ListBox ({ calorieCap, food, setFood }) {
+function ListBox ({ calorieCap, refreshFlag }) {
     const [items, setItems] = useState([]);
     const [itemName, setItemName] = useState("");
     const [itemCalories, setItemCalories] = useState("")
 
-    useEffect(() => {
+    const fetchItems = () => {
         fetch('/api/items')
             .then(res => res.json())
             .then(data => setItems(data));
-    }, []);
+    };
+
+    useEffect(fetchItems, [refreshFlag])
 
     const addItem = async () => {
         if (itemName.trim() !== "" && itemCalories.trim() !== "") {
@@ -115,17 +117,13 @@ function ListBox ({ calorieCap, food, setFood }) {
     )
 }
 
-function CombinedBox ( { calorieCap, food, setFood, onAddFood }) {
+function CombinedBox ( { calorieCap, onAddFood, refreshFlag }) {
     return (
         <div className="combinedBox">
             <BoxLeft></BoxLeft>
             <BoxPrimary> 
-                <ListBox 
-                    calorieCap = {calorieCap} 
-                    food ={food} 
-                    setFood={setFood}> 
-                </ListBox> 
-                <ItemBox onAddFood={onAddFood}></ItemBox>
+                <ListBox calorieCap = {calorieCap} refreshFlag={refreshFlag}/>
+                <ItemBox onAddFood={onAddFood}/>
             </BoxPrimary>
             <BoxRight></BoxRight>
         </div>

@@ -3,16 +3,36 @@ import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-do
 
 function ItemBox ( {onAddFood} ) {
     const [showNewItems, setShowNewItems] = useState(false);
+    const [preset, setPreset] = useState([]);
+    const [presetName, setPresetName] = useState("");
+    const [presetCalories, setPresetCalories] = useState("")
+
     const presetFood = [
         { name: "Bowl of white rice", calories: 200},
         { name: "2X Spicy Buldak", calories: 550},
         { name: "Boiled Egg", calories: 78},
         { name: "1/2 cup of Potato Salad", calories: 179},
         { name: "Ribeye Steak (227g)", calories: 560}
-    ]
+    ];
 
     const toggleItems = () => {
         setShowNewItems(prevState => !prevState);
+    }
+
+    const addPreset = async () => {
+        if (presetName.trim() !== "" && presetCalories.trim() !== "") {
+            const newPreset = { name: presetName, calories: presetCalories };
+            const res = await fetch('/api/preset', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newPreset)
+            });
+            const savedPreset = await res.json();
+            
+            setItems([...preset, savedPreset])
+            setItemName("");
+            setItemCalories("");
+        }
     }
 
     return (
@@ -33,8 +53,23 @@ function ItemBox ( {onAddFood} ) {
                             </li>
                         ))}
                     </ul>
+                <input
+                    type="text"
+                    value={presetName}
+                    onChange={e => setPresetName(e.target.value)}
+                    placeholder="Add a new preset item"
+                />
+                <input
+                    type="number"
+                    value={presetCalories}
+                    onChange={e => setPresetCalories(e.target.value)}
+                    placeholder="Add Calorie Count"
+                    min="0"
+                />
+                <button onClick={addPreset}>Add</button>
                 </div>
             )}
+
         </div>
     )
 }

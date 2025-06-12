@@ -1,6 +1,7 @@
 import express from 'express';
-import { CommandSucceededEvent, MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
-import DailyController from './controllers/DailyController'
+import { CommandSucceededEvent, MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+import DailyController from './controllers/DailyController';
+import PresetController from './controllers/PresetController';
 
 const app = express();
 const uri = "mongodb+srv://ST-byte441:Codesmith441@cluster0.wvsc7qy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
@@ -32,8 +33,12 @@ const client = new MongoClient(uri, {
 
 await client.connect();
 const db = client.db("calorieApp"); 
+
 const collection = db.collection("items");
 const dailyController=DailyController(collection);
+
+const presetCollection = db.collection("presetCollection");
+const presetController=PresetController(presetCollection);
 
 
 // Server Functionality
@@ -92,6 +97,18 @@ app.post('/api/items', dailyController.addItem, (req, res) => {
 });
 
 app.delete('/api/items/:id', dailyController.deleteItem, (req, res) => {
+  res.status(200).json(res.locals.deletedItem)
+})
+
+app.get('/api/preset', presetController.getAllItems, (req, res) => {
+  res.status(200).json(res.locals.items)
+});
+
+app.post('/api/preset', presetController.addItem, (req, res) => {
+  res.status(200).json(res.locals.newItem)
+});
+
+app.delete('/api/preset/:id', presetController.deleteItem, (req, res) => {
   res.status(200).json(res.locals.deletedItem)
 })
 

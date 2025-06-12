@@ -19,17 +19,24 @@ function Home() {
 
 //* Secondary page with Calorie tracker
 function MyCalories() {
-    const [calorieCap, setCalorieCap] = useState(2000)
-    const [food, setFood] = useState([])
+    const [calorieCap, setCalorieCap] = useState(2000);
+    const [refreshFlag, setRefreshFlag] = useState(false); // toggle for dynamic refresh
 
-    const addFood = (item) => {
-        setFood(prev => [...prev, item])
-    }
+    // Post request to add items to MongoDB. Needed here to run thru CombinedBox
+    const addFood = async (item) => {
+        await fetch('/api/items', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+        });
+        setRefreshFlag(flag => !flag); // Dynamic Refresh
+    };
+
 
     return (
         <div className="myCaloriesPage">
             <Header calories={calorieCap} setCalories={setCalorieCap}></Header>
-            <CombinedBox calorieCap={calorieCap} food={food} setFood={setFood} onAddFood={addFood}></CombinedBox>
+            <CombinedBox calorieCap={calorieCap} onAddFood={addFood} refreshFlag={refreshFlag}></CombinedBox>
         </div>
     );
 }
