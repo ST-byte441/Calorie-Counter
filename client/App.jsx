@@ -54,6 +54,10 @@ function Secret() {
                 <li>More Cards with more stats! i.e: Monthly tracker</li>
                 <li>Auto-clear primary box list at the end of the day</li>
                 <li>Improve database rendering speed</li>
+                <li>Add User Database to allow for multiple users + auth</li>
+                <li>Get my Complaint form working... or not</li>
+                <li>Clean up Frontend</li>
+                <li>Refactor with Typescript</li>
             </ul>
         </div>
     )
