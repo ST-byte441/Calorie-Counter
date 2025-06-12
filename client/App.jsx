@@ -53,6 +53,7 @@ function Secret() {
                 <li>Move Presets into a toolbar</li>
                 <li>More Cards with more stats! i.e: Monthly tracker</li>
                 <li>Auto-clear primary box list at the end of the day</li>
+                <li>Improve database rendering speed</li>
             </ul>
         </div>
     )
