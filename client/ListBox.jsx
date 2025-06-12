@@ -22,12 +22,28 @@ function BoxPrimary ({ children }) {
 
 function ListBox () {
     const [items, setItems] = useState([]);
-    const [input, setInput] = useState("")
+    const [itemName, setItemName] = useState("");
+    const [itemCalories, setItemCalories] = useState("")
 
-    const addItem = () => {
-        if (input.trim() !== "") {
-            setItems([...items, input])
-            setInput("")
+    useEffect(() => {
+        fetch('/api/items')
+            .then(res => res.json())
+            .then(data => setItems(data));
+    }, []);
+
+    const addItem = async () => {
+        if (itemName.trim() !== "" && itemCalories.trim() !== "") {
+            const newItem = { name: itemName, calories: itemCalories };
+            const res = await fetch('/api/items', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(newItem)
+            });
+            const savedItem = await res.json();
+            
+            setItems([...items, savedItem])
+            setItemName("");
+            setItemCalories("");
         }
     }
 
@@ -36,14 +52,23 @@ function ListBox () {
             <h2>List of Today's Calories</h2>
             <input
                 type="text"
-                value={input}
-                onChange={e => setInput(e.target.value)}
+                value={itemName}
+                onChange={e => setItemName(e.target.value)}
                 placeholder="Add Item"
+            />
+            <input
+                type="number"
+                value={itemCalories}
+                onChange={e => setItemCalories(e.target.value)}
+                placeholder="Add Calorie Count"
+                min="0"
             />
             <button onClick={addItem}>Add</button>
             <ul>
                 {items.map((item, idx) => (
-                    <li key={idx}>{item}</li>
+                    <li key={idx}>
+                        {item.name} - {item.calories} cal
+                    </li>
                 ))}
             </ul>
         </div>

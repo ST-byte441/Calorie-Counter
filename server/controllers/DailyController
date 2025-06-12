@@ -1,0 +1,28 @@
+import { Collection, Db } from "mongodb"
+import { MongoClient, ServerApiVersion } from 'mongodb'
+
+const DailyController = (collection) => ({
+    //Get all items in the Daily List
+    async getAllItems(req, res, next) {
+        try {
+            const items = await collection.find({}).toArray();
+            res.locals.items = items;
+            return next();
+        } catch (err) {
+            return next('Error in DailyController.getAllItems: ' + JSON.stringify(err));
+        }
+    },
+
+    async addItem(req, res, next) {
+        try {
+            const { name, calories } = req.body;
+            const result = await collection.insertOne({ name, calories });
+            res.locals.newItem = {_id: result.insertedID, name, calories};
+            return next();
+        } catch (err) {
+            return next('Error in DailyController.addItem: ' + JSON.stringify(err))
+        }
+    }
+});
+
+export default DailyController
