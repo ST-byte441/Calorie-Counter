@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Quotes from "./Quotes";
 import Header from "./ResHeader";
+import ItemBox from "./ItemBox"
 
 
 //* Homepage with Quotes!
@@ -19,8 +20,9 @@ function Home() {
 //* Secondary page with Calorie tracker
 function MyCalories() {
     return (
-        <div>
+        <div className="myCaloriesPage">
             <Header></Header>
+            <ItemBox></ItemBox>
         </div>
     );
 }
