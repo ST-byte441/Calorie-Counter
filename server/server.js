@@ -1,5 +1,5 @@
 import express from 'express';
-import { CommandSucceededEvent, MongoClient, ServerApiVersion } from 'mongodb'
+import { CommandSucceededEvent, MongoClient, ServerApiVersion, ObjectId } from 'mongodb'
 import DailyController from './controllers/DailyController'
 
 const app = express();
@@ -91,6 +91,9 @@ app.post('/api/items', dailyController.addItem, (req, res) => {
   res.status(200).json(res.locals.newItem)
 });
 
+app.delete('/api/items/:id', dailyController.deleteItem, (req, res) => {
+  res.status(200).json(res.locals.deletedItem)
+})
 
 //-//-//-//-//-//-//-//-//-//-//-//-//-//-//Errors & Listener//-//-//-//-//-//-//-//-//-//-//-//-//-//-//
 

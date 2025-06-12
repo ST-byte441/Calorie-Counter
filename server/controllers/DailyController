@@ -1,4 +1,4 @@
-import { Collection, Db } from "mongodb"
+import { Collection, Db, ObjectId } from "mongodb"
 import { MongoClient, ServerApiVersion } from 'mongodb'
 
 const DailyController = (collection) => ({
@@ -17,10 +17,21 @@ const DailyController = (collection) => ({
         try {
             const { name, calories } = req.body;
             const result = await collection.insertOne({ name, calories });
-            res.locals.newItem = {_id: result.insertedID, name, calories};
+            res.locals.newItem = {_id: result.insertedId, name, calories};
             return next();
         } catch (err) {
             return next('Error in DailyController.addItem: ' + JSON.stringify(err))
+        }
+    },
+
+    async deleteItem(req, res, next) {
+        try {
+            const id = req.params.id;
+            await collection.deleteOne({_id: new ObjectId(id)});
+            res.locals.deletedItem = 'Succesfully deleted item!';
+            return next();
+        } catch (err) {
+            return next('Error in DailyController.deleteItem: ' + JSON.stringify(err))
         }
     }
 });

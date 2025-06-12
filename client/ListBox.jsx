@@ -20,7 +20,7 @@ function BoxPrimary ({ children }) {
     )
 }
 
-function ListBox () {
+function ListBox ({ calorieCap }) {
     const [items, setItems] = useState([]);
     const [itemName, setItemName] = useState("");
     const [itemCalories, setItemCalories] = useState("")
@@ -47,39 +47,78 @@ function ListBox () {
         }
     }
 
+    const deleteItem = async (id) => {
+        await fetch(`/api/items/${id}`, {
+            method: 'DELETE',
+        });
+        setItems(items.filter(item => item._id !== id))
+    }
+
+    const totalCalories = items.reduce((sum, item) => sum + Number(item.calories), 0);
+    function calcPercent(partial, total, decimalPlace = 2) {
+        if (total === 0) {
+            return "0.00%"
+        }
+        let percentage = (partial / total) * 100;
+
+        return percentage.toFixed(decimalPlace) + "%"
+
+    }
+    const currentPercent = calcPercent(totalCalories, calorieCap);
+
     return (
-        <div>
+        <div className="listBox">
             <h2>List of Today's Calories</h2>
-            <input
-                type="text"
-                value={itemName}
-                onChange={e => setItemName(e.target.value)}
-                placeholder="Add Item"
-            />
-            <input
-                type="number"
-                value={itemCalories}
-                onChange={e => setItemCalories(e.target.value)}
-                placeholder="Add Calorie Count"
-                min="0"
-            />
-            <button onClick={addItem}>Add</button>
+            <div>
+                <input
+                    type="text"
+                    value={itemName}
+                    onChange={e => setItemName(e.target.value)}
+                    placeholder="Add Item"
+                />
+                <input
+                    type="number"
+                    value={itemCalories}
+                    onChange={e => setItemCalories(e.target.value)}
+                    placeholder="Add Calorie Count"
+                    min="0"
+                />
+                <button onClick={addItem}>Add</button>
+            </div>
             <ul>
-                {items.map((item, idx) => (
-                    <li key={idx}>
+                {items.map((item) => (
+                    <li key={item._id} className="listItemRow">
                         {item.name} - {item.calories} cal
+                        <button
+                        className="deleteButton"
+                        onClick={() => deleteItem(item._id)}
+                        aria-label="Delete"
+                        >
+                        x    
+                        </button>
                     </li>
                 ))}
             </ul>
+            <div className="totalCaloriesNum">Total Calories for the day: {totalCalories}</div>
+            <div>Daily Calorie Cap: <span 
+                id="currentPercent"
+                style={{
+                    fontWeight: "bold",
+                    color: Number(currentPercent.replace('%','')) > 100 ? "red" : "#32CD32"
+                }}
+                >
+                {currentPercent}
+                </span>
+            </div>
         </div>
     )
 }
 
-function CombinedBox () {
+function CombinedBox ( {calorieCap }) {
     return (
         <div className="combinedBox">
             <BoxLeft></BoxLeft>
-            <BoxPrimary> <ListBox> </ListBox> </BoxPrimary>
+            <BoxPrimary> <ListBox calorieCap = {calorieCap}> </ListBox> </BoxPrimary>
             <BoxRight></BoxRight>
         </div>
     )

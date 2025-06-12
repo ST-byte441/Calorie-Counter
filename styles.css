@@ -49,7 +49,7 @@ html, body {
     font-style: italic;
 }
 
-
+/* --------------------------------------------------------------------------------------------------------------------- */
 /** MyCalories Page Styling */
 .myCaloriesPage{
     position: absolute;
@@ -125,6 +125,8 @@ html, body {
   }
 }
 
+/* --------------------------------------------------------------------------------------------------------------------- */
+/* Middle display styling */
 .combinedBox {
     display:flex;
     flex-direction: row;
@@ -146,6 +148,40 @@ html, body {
     align-items: center;
 }
 
+.listBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.listItemRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+ul {
+  padding-left: 2em;
+}
+
+.deleteButton {
+  margin-left: 1em;
+  color: red; 
+  border: "none"; 
+  background: "none"; 
+  cursor: "pointer";
+  font-size: 1.2em;
+}
+
+.totalCaloriesNum {
+  font-weight: bold;
+}
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+/* Footer dislay styling */
 .arrow-container {
   cursor: pointer;
   padding: 10px; /* Adjust padding as needed */

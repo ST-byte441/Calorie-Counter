@@ -20,11 +20,18 @@ function Home() {
 
 //* Secondary page with Calorie tracker
 function MyCalories() {
+    const [calorieCap, setCalorieCap] = useState(2000)
+    const [food, setFood] = useState([])
+
+    const addFood = (item) => {
+        setFood(prev => [...prev, item])
+    }
+
     return (
         <div className="myCaloriesPage">
-            <Header></Header>
-            <CombinedBox></CombinedBox>
-            <ItemBox></ItemBox>
+            <Header calories={calorieCap} setCalories={setCalorieCap}></Header>
+            <CombinedBox calorieCap={calorieCap} food={food} setFood={setFood}></CombinedBox>
+            <ItemBox onAddFood={addFood}></ItemBox>
         </div>
     );
 }

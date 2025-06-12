@@ -1,9 +1,7 @@
 import React, { useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-dom";
 
-function Header() {
-    const [calories, setCalories] = useState(2000)
-
+function Header({ calories, setCalories }) {
     return (
         <div className="header">
             <a href="#default" class="logo">Let's count calories!</a>
@@ -17,9 +15,9 @@ function Header() {
                     onChange={e => setCalories(Number(e.target.value))}></input>
             </div>
             <div className="header-right">
-                <Link className="active" to="/">Home</Link>
-                <a href="#contact">Contact</a>
-                <a href="#about">About</a>
+                <Link className="active" to="/">Inspirational Quote</Link>
+                <a href="#contact">Complaint Form</a>
+                <a href="#about">Nutritional Info</a>
             </div>
         </div>
     )
