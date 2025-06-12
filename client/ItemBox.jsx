@@ -1,8 +1,15 @@
 import React, { useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-dom";
 
-function ItemBox () {
+function ItemBox ( {onAddFood} ) {
     const [showNewItems, setShowNewItems] = useState(false);
+    const presetFood = [
+        { name: "Bowl of white rice", calories: 200},
+        { name: "2X Spicy Buldak", calories: 550},
+        { name: "Boiled Egg", calories: 78},
+        { name: "1/2 cup of Potato Salad", calories: 179},
+        { name: "Ribeye Steak (227g)", calories: 560}
+    ]
 
     const toggleItems = () => {
         setShowNewItems(prevState => !prevState);
@@ -17,10 +24,14 @@ function ItemBox () {
 
             {showNewItems && (
                 <div className="new-items">
-                    {/*Render my new items, e.g., a list */}
                     <ul>
-                        <li>New Item 1</li>
-                        <li>New Item 2</li>
+                        {presetFood.map((item, idx) => (
+                            <li key={idx}>
+                                <button onClick={() => onAddFood(item)}>
+                                    {item.name} ({item.calories} cal)
+                                </button>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             )}

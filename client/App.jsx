@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import Quotes from "./Quotes";
 import Header from "./ResHeader";
-import ItemBox from "./ItemBox"
 import CombinedBox from "./ListBox";
 
 
@@ -30,8 +29,7 @@ function MyCalories() {
     return (
         <div className="myCaloriesPage">
             <Header calories={calorieCap} setCalories={setCalorieCap}></Header>
-            <CombinedBox calorieCap={calorieCap} food={food} setFood={setFood}></CombinedBox>
-            <ItemBox onAddFood={addFood}></ItemBox>
+            <CombinedBox calorieCap={calorieCap} food={food} setFood={setFood} onAddFood={addFood}></CombinedBox>
         </div>
     );
 }

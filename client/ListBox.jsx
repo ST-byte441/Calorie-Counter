@@ -1,5 +1,6 @@
 import React, { useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-dom";
+import ItemBox from "./ItemBox";
 
 
 function BoxLeft () {
@@ -20,7 +21,7 @@ function BoxPrimary ({ children }) {
     )
 }
 
-function ListBox ({ calorieCap }) {
+function ListBox ({ calorieCap, food, setFood }) {
     const [items, setItems] = useState([]);
     const [itemName, setItemName] = useState("");
     const [itemCalories, setItemCalories] = useState("")
@@ -114,11 +115,18 @@ function ListBox ({ calorieCap }) {
     )
 }
 
-function CombinedBox ( {calorieCap }) {
+function CombinedBox ( { calorieCap, food, setFood, onAddFood }) {
     return (
         <div className="combinedBox">
             <BoxLeft></BoxLeft>
-            <BoxPrimary> <ListBox calorieCap = {calorieCap}> </ListBox> </BoxPrimary>
+            <BoxPrimary> 
+                <ListBox 
+                    calorieCap = {calorieCap} 
+                    food ={food} 
+                    setFood={setFood}> 
+                </ListBox> 
+                <ItemBox onAddFood={onAddFood}></ItemBox>
+            </BoxPrimary>
             <BoxRight></BoxRight>
         </div>
     )
