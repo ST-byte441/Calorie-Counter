@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-do
 function Header({ calories, setCalories }) {
     return (
         <div className="header">
-            <a href="#default" class="logo">Let's count calories!</a>
+            <Link href="#default" class="logo" to="/Secret">Let's count calories!</Link>
             <div className="dailyCalorieSetter">
                 <label for="quantity">Daily Calories Cap: </label>
                 <input 
@@ -17,7 +17,9 @@ function Header({ calories, setCalories }) {
             <div className="header-right">
                 <Link className="active" to="/">Inspirational Quote</Link>
                 <a href="#contact">Complaint Form</a>
-                <a href="#about">Nutritional Info</a>
+                <a href="https://odphp.health.gov/our-work/nutrition-physical-activity/dietary-guidelines">
+                Nutritional Info
+                </a>
             </div>
         </div>
     )

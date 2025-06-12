@@ -57,7 +57,7 @@ function ItemBox ( {onAddFood} ) {
                     type="text"
                     value={presetName}
                     onChange={e => setPresetName(e.target.value)}
-                    placeholder="Add a new preset item"
+                    placeholder="Request a new preset item"
                 />
                 <input
                     type="number"
@@ -66,7 +66,7 @@ function ItemBox ( {onAddFood} ) {
                     placeholder="Add Calorie Count"
                     min="0"
                 />
-                <button onClick={addPreset}>Add</button>
+                <button onClick={addPreset}>Send Request</button>
                 </div>
             )}
 

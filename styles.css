@@ -60,7 +60,8 @@ html, body {
     width: 100vw;
 }
 
-/* Style the header with a grey background and some padding */
+/* --------------------------------------------------------------------------------------------------------------------- */
+/** Header Styling */
 .header {
   overflow: hidden;
   background-color: #F5DEB3;
@@ -85,7 +86,7 @@ html, body {
   border-radius: 4px;
 }
 
-/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+/* Style the logo link */
 .header a.logo {
   font-size: 25px;
   font-weight: bold;
@@ -103,7 +104,7 @@ html, body {
 
 /* Change the background color on mouse-over */
 .header a:hover {
-  background-color: #00FA9A;
+  background-color: #FAFAD2;
   color: black;
 }
 
@@ -135,7 +136,7 @@ html, body {
     opacity: 0.8;
     min-width: 25%;
     min-height: 75%;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    box-shadow: 10px 10px 5px rgba(0,0,0,0.1);
     border-radius: 12px;
 
     display: flex;
@@ -180,7 +181,7 @@ ul {
 }
 
 /* --------------------------------------------------------------------------------------------------------------------- */
-/* Footer dislay styling */
+/* Footer display styling */
 .arrow-container {
   cursor: pointer;
   padding: 10px; /* Adjust padding as needed */
@@ -200,4 +201,21 @@ ul {
 
 .arrow.up {
   transform: rotate(-135deg);
+}
+
+/* --------------------------------------------------------------------------------------------------------------------- */
+/** Additional pages styling */
+/* Secret page styling */
+.secretPage {
+    position: absolute;
+    inset: 0;
+    background: url('./assets/funnyBalloon.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

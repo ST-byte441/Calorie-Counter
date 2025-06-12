@@ -41,6 +41,23 @@ function MyCalories() {
     );
 }
 
+//* Side pages
+function Secret() {
+    return (
+        <div className="secretPage">
+            <h1>You're not supposed to be here</h1>
+            <h2>"Upcoming features"</h2>
+            <ul>
+                <li>More cards!</li>
+                <li>Add presets directly</li>
+                <li>Move Presets into a toolbar</li>
+                <li>More Cards with more stats! i.e: Monthly tracker</li>
+                <li>Auto-clear primary box list at the end of the day</li>
+            </ul>
+        </div>
+    )
+}
+
 //* Primary Export Page
 export default () => {
     return (
@@ -48,6 +65,7 @@ export default () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/MyCalories" element={<MyCalories />} />
+                <Route path="/Secret" element={<Secret />} />
             </Routes>
         </BrowserRouter>
     )
