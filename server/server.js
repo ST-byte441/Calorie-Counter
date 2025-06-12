@@ -1,7 +1,7 @@
 import express from 'express';
 import { CommandSucceededEvent, MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
 import DailyController from './controllers/DailyController';
-import PresetController from './controllers/PresetController';
+import PresetController from './controllers/PresetController.js';
 
 const app = express();
 const uri = "mongodb+srv://ST-byte441:Codesmith441@cluster0.wvsc7qy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
