@@ -79,7 +79,7 @@ app.get('/api/quote', async (_req, res) => {
       author: 'Phyllis Diller',
     },
     {
-      text: `If at first you don't succeed... so muhc for skydiving.`,
+      text: `If at first you don't succeed... so much for skydiving.`,
       author: 'Henny Youngman',
     },
   ];
