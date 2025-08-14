@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-do
 
 function ItemBox ( {onAddFood} ) {
     const [showNewItems, setShowNewItems] = useState(false);
-    const [preset, setPreset] = useState([]);
+    const [preset, setPreset] = useState<{ name: string; calories: number }[]>([]);
     const [presetName, setPresetName] = useState("");
     const [presetCalories, setPresetCalories] = useState("")
 
@@ -29,9 +29,9 @@ function ItemBox ( {onAddFood} ) {
             });
             const savedPreset = await res.json();
             
-            setItems([...preset, savedPreset])
-            setItemName("");
-            setItemCalories("");
+            setPreset([...preset, savedPreset])
+            setPresetName("");
+            setPresetCalories("");
         }
     }
 

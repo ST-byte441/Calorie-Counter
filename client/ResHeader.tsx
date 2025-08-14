@@ -4,9 +4,9 @@ import { BrowserRouter, Routes, Route, useNavigate, Link } from "react-router-do
 function Header({ calories, setCalories }) {
     return (
         <div className="header">
-            <Link href="#default" class="logo" to="/Secret">Let's count calories!</Link>
+            <Link className="logo" to="/Secret">Let's count calories!</Link>
             <div className="dailyCalorieSetter">
-                <label for="quantity">Daily Calories Cap: </label>
+                <label htmlFor="quantity">Daily Calories Cap: </label>
                 <input 
                     type="number" 
                     id="quantity" 
