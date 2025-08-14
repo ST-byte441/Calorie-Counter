@@ -1,10 +1,12 @@
 import express from 'express';
 import { CommandSucceededEvent, MongoClient, ServerApiVersion, ObjectId } from 'mongodb';
+import dotenv from 'dotenv';
 import DailyController from './controllers/DailyController';
 import PresetController from './controllers/PresetController.js';
 
+dotenv.config();
 const app = express();
-const uri = "mongodb+srv://ST-byte441:Codesmith441@cluster0.wvsc7qy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const uri = process.env.MONGO_URI;
 const PORT = 3000;
 
 app.use(express.json());
@@ -17,19 +19,6 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
-
-// async function connectMongo() {
-//   try {
-//     // Connect the client to the server	(optional starting in v4.7)
-//     await client.connect();
-//     // Send a ping to confirm a successful connection
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
-//   } catch (err) {
-//     console.error("MongoDB connection error: ", err);
-//   }
-// }
-// connectMongo();
 
 await client.connect();
 const db = client.db("calorieApp"); 
